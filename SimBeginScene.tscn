@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6v28f1dgaybi"]
+[gd_scene load_steps=11 format=3 uid="uid://b6v28f1dgaybi"]
 
 [ext_resource type="Script" path="res://SimBeginScene.cs" id="1_bny7g"]
 [ext_resource type="Texture2D" uid="uid://dlo7dha7l08ex" path="res://Textures/DolphinCow.jpg" id="2_d2gk0"]
+[ext_resource type="PackedScene" uid="uid://dgxwvehspcn4u" path="res://Models381/SpringModel.tscn" id="3_fl23q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6ywl7"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -50,6 +51,9 @@ mesh = SubResource("BoxMesh_my60u")
 [node name="Ball1" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.852522, 0)
 mesh = SubResource("SphereMesh_e3ltm")
+
+[node name="SpringModel" parent="." instance=ExtResource("3_fl23q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07601, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.959191, -0.01817, 0.282174, -0.00815884, 0.995739, 0.0918525, -0.282641, -0.0904063, 0.954956, 0.364364, 0.76367, 1.26963)

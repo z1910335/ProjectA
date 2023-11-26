@@ -5,6 +5,7 @@ public partial class SimBeginScene : Node3D
 {
 	MeshInstance3D anchor;
 	MeshInstance3D ball;
+	SpringModel spring;
 	double xA, yA, zA; //coordinates of anchor
 	float length; // length of pendulum
 	double angle; // pendulum angle
@@ -21,8 +22,11 @@ public partial class SimBeginScene : Node3D
 		xA = 0.0; yA = 1.1; zA = 0.0;
 		anchor = GetNode<MeshInstance3D>("Anchor");
 		ball = GetNode<MeshInstance3D>("Ball1");
+		spring = GetNode<SpringModel>("SpringModel");
 		endA = new Vector3((float)xA, (float)yA, (float)zA);
 		anchor.Position = endA;
+
+		spring.GenMesh(0.5f, 0.08f, 2.0f, 2.0f, 62);
 
 		length = 0.9f;
 		angleInit = Mathf.DegToRad(60.0);
