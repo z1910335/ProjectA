@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6v28f1dgaybi"]
+
+[ext_resource type="Script" path="res://SimBeginScene.cs" id="1_bny7g"]
+[ext_resource type="Texture2D" uid="uid://dlo7dha7l08ex" path="res://Textures/Dolphin and a Cow.jpg" id="2_415en"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6ywl7"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_wcg8x"]
+sky_material = SubResource("ProceduralSkyMaterial_6ywl7")
+
+[sub_resource type="Environment" id="Environment_csfdw"]
+background_mode = 2
+sky = SubResource("Sky_wcg8x")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n5nk1"]
+albedo_texture = ExtResource("2_415en")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gnhag"]
+material = SubResource("StandardMaterial3D_n5nk1")
+size = Vector2(4, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_my60u"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="SphereMesh" id="SphereMesh_e3ltm"]
+radius = 0.1
+height = 0.2
+
+[node name="SimBeginScene" type="Node3D"]
+script = ExtResource("1_bny7g")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 4.30487, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_csfdw")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_gnhag")
+
+[node name="Anchor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0267027, 1.65396, -0.0155832)
+mesh = SubResource("BoxMesh_my60u")
+
+[node name="Ball1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.852522, 0)
+mesh = SubResource("SphereMesh_e3ltm")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.980395, 0, 0.197041, 0, 1, 0, -0.197041, 0, 0.980395, 0.115537, 0.770917, 1.45985)
