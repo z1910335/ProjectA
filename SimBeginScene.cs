@@ -11,6 +11,9 @@ public partial class SimBeginScene : Node3D
 	double angleInit; // initial pendulum angle
 	double time; 
 
+	Vector3 endA;	// end point of anchor
+	Vector3 endB;	// end point for pendulum bob
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -18,12 +21,17 @@ public partial class SimBeginScene : Node3D
 		xA = 0.0; yA = 1.1; zA = 0.0;
 		anchor = GetNode<MeshInstance3D>("Anchor");
 		ball = GetNode<MeshInstance3D>("Ball1");
-		anchor.Position = new Vector3((float)xA, (float)yA, (float)zA);
+		endA = new Vector3((float)xA, (float)yA, (float)zA);
+		anchor.Position = endA;
 
 		length = 0.9f;
 		angleInit = Mathf.DegToRad(60.0);
-		angle = angleInit;
-		PlacePendulum((float)angle);
+		float angleF = (float)angleInit;
+		endB.X = endA.X + length*Mathf.Sin(angleF);
+		endB.Y = endA.Y - length*Mathf.Cos(angleF);
+		endB.Z = endA.Z;
+		PlacePendulum(endB);
+		//PlacePendulum((float)angle);
 
 		time = 0.0;
 	}
@@ -31,18 +39,16 @@ public partial class SimBeginScene : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		angle = Math.Sin(3.0 * time);
-		PlacePendulum((float)angle);
+		float angleF = (float)Math.Sin(3.0 * time);
+		endB.X = endA.X + length*Mathf.Sin(angleF);
+		endB.Y = endA.Y - length*Mathf.Cos(angleF);
+		endB.Z = endA.Z;
+		PlacePendulum(endB);
 		time += delta;
 	}
 
-	private void PlacePendulum(float angleF)
+	private void PlacePendulum(Vector3 endBB)
 	{
-		//GD.Print("Inside PlacePendulum");
-		float xB = (float)xA + length*Mathf.Sin(angleF);
-		float yB = (float)yA - length*Mathf.Cos(angleF);
-		float zB = 0.0f;
-
-		ball.Position = new Vector3(xB, yB, zB);
+		ball.Position = endBB;
 	}
 }

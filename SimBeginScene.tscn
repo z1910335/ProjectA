@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://b6v28f1dgaybi"]
 
 [ext_resource type="Script" path="res://SimBeginScene.cs" id="1_bny7g"]
-[ext_resource type="Texture2D" uid="uid://dlo7dha7l08ex" path="res://Textures/Dolphin and a Cow.jpg" id="2_415en"]
+[ext_resource type="Texture2D" uid="uid://dlo7dha7l08ex" path="res://Textures/DolphinCow.jpg" id="2_d2gk0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6ywl7"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -17,7 +17,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n5nk1"]
-albedo_texture = ExtResource("2_415en")
+albedo_texture = ExtResource("2_d2gk0")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gnhag"]
 material = SubResource("StandardMaterial3D_n5nk1")
@@ -52,4 +52,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.852522, 0)
 mesh = SubResource("SphereMesh_e3ltm")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.980395, 0, 0.197041, 0, 1, 0, -0.197041, 0, 0.980395, 0.115537, 0.770917, 1.45985)
+transform = Transform3D(0.959191, -0.01817, 0.282174, -0.00815884, 0.995739, 0.0918525, -0.282641, -0.0904063, 0.954956, 0.364364, 0.76367, 1.26963)
