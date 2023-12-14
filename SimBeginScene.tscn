@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://b6v28f1dgaybi"]
+[gd_scene load_steps=12 format=3 uid="uid://b6v28f1dgaybi"]
 
-[ext_resource type="Script" path="res://SimBeginScene.cs" id="1_bny7g"]
+[ext_resource type="Script" path="res://SimBeginScene.cs" id="1_51m4p"]
 [ext_resource type="Texture2D" uid="uid://dlo7dha7l08ex" path="res://Textures/DolphinCow.jpg" id="2_d2gk0"]
 [ext_resource type="PackedScene" uid="uid://dgxwvehspcn4u" path="res://Models381/SpringModel.tscn" id="3_fl23q"]
 
@@ -27,12 +27,16 @@ size = Vector2(4, 4)
 [sub_resource type="BoxMesh" id="BoxMesh_my60u"]
 size = Vector3(0.2, 0.2, 0.2)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8fre2"]
+metallic = 0.95
+
 [sub_resource type="SphereMesh" id="SphereMesh_e3ltm"]
+material = SubResource("StandardMaterial3D_8fre2")
 radius = 0.1
 height = 0.2
 
 [node name="SimBeginScene" type="Node3D"]
-script = ExtResource("1_bny7g")
+script = ExtResource("1_51m4p")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 4.30487, 0)
@@ -53,7 +57,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.852522, 0)
 mesh = SubResource("SphereMesh_e3ltm")
 
 [node name="SpringModel" parent="." instance=ExtResource("3_fl23q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07601, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.530517, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.959191, -0.01817, 0.282174, -0.00815884, 0.995739, 0.0918525, -0.282641, -0.0904063, 0.954956, 0.364364, 0.76367, 1.26963)
+transform = Transform3D(0.971741, -0.197741, 0.128913, 0.0921902, 0.820673, 0.563912, -0.217304, -0.536092, 0.815711, 0.383894, 2.03568, 2.60909)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 62.0
+offset_bottom = 116.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "ENERGY"
+
+[node name="KELabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "KE: "
+
+[node name="PELabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "PE: "
+
+[node name="TotLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Total: "
